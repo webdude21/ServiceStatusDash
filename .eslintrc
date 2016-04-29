@@ -1,7 +1,9 @@
 {
   "ecmaFeatures": {},
   "parser": "babel-eslint",
-  "env": {},
+  "env": {
+   "node": true,
+  },
   "rules": {
     "no-alert": 1,
     "no-array-constructor": 2,
