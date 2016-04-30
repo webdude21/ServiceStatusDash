@@ -6,7 +6,7 @@ module.exports = function (grunt) {
       root: 'src',
       src: '<%= project.root %>/scripts',
       libs: '<%= project.root %>/lib',
-      css: '<%= project.root %>/styles',
+      css: '<%= project.root %>/styles'
     },
     compress: {
       main: {
@@ -23,7 +23,7 @@ module.exports = function (grunt) {
     },
     clean: {
       zip: {
-        srt: ['<%= pkg.name %>.zip']
+        src: ['<%= pkg.name %>.zip']
       }
     }
   });
