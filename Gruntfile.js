@@ -1,57 +1,35 @@
 'use strict';
 module.exports = function (grunt) {
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
     project: {
-      app: 'public/src',
-      build: 'public/compiled',
-      root: './'
+      root: 'src',
+      src: '<%= project.root %>/scripts',
+      libs: '<%= project.root %>/lib',
+      css: '<%= project.root %>/styles',
+    },
+    compress: {
+      main: {
+        options: {
+          archive: '<%= pkg.name %>.zip'
+        },
+        files: [
+          { expand: true, cwd: '<%= project.root %>', src: ['**/*'], dest: '/' }
+        ]
+      }
     },
     eslint: {
-      app: ['Gruntfile.js', '<%= project.app %>/scripts/**/*.js']
-    },
-    copy: {
-      img: {
-        files: [
-          { expand: true, cwd: '<%= project.app %>', src: ['img/**'], dest: '<%= project.build %>' }
-        ]
-      },
-      favicon: {
-        files: {
-          '<%= project.build %>/favicon.ico': '<%= project.app %>/favicon.ico'
-        }
-      },
-      js: {
-        files: {
-          '<%= project.build %>/scripts/build.min.js': '.tmp/min/scripts/build.min.js'
-        }
-      },
-      css: {
-        files: {
-          '<%= project.build %>/styles/build.min.css': '.tmp/min/styles/build.min.css'
-        }
-      }
+      app: ['<%= project.src %>/**/*.js']
     },
     clean: {
-      build: {
-        src: ['.tmp', '<%= project.build %>']
-      }
-    },
-    less: {
-      build: {
-        options: {
-          strictMath: true,
-          compress: false
-        },
-        files: [{
-          expand: true,
-          src: ['<%= project.app %>/styles/**/*.less'],
-          ext: '.css',
-          extDot: 'first'
-        }]
+      zip: {
+        srt: ['<%= pkg.name %>.zip']
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-eslint');
-  grunt.registerTask('build', ['eslint','clean', 'copy']);
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.registerTask('default', ['eslint', 'clean', 'compress']);
 };
