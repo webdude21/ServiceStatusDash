@@ -52,7 +52,7 @@ module.exports = function (grunt) {
       }
     },
     jsbeautifier: {
-      files: ['<%= project.src %>/**/*'],
+      files: ['<%= project.root %>/**/*'],
       options: {
         config: '.jsbeautifyrc'
       }
@@ -74,6 +74,15 @@ module.exports = function (grunt) {
       target: {
         src: [target]
       }
+    },
+    watch: {
+      src: {
+        files: ['<%= project.root %>/**/*'],
+        tasks: ['development'],
+        options: {
+          debounceDelay: 250
+        }
+      }
     }
   });
 
@@ -83,6 +92,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-jsbeautifier');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.registerTask('default', ['jsbeautifier', 'eslint', 'clean', 'browserify', 'copy', 'compress']);
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.registerTask('default', ['jsbeautifier', 'eslint', 'clean', 'browserify', 'copy']);
+  grunt.registerTask('development', ['clean', 'browserify', 'copy']);
+  grunt.registerTask('build', ['default', 'compress']);
 };
 

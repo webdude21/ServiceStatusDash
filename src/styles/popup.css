@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.service-list {
+  padding: 0.5rem;
+  list-style-type: none;
+}
+
+.heading {
+  padding: 0.5rem;
+  background-color: lightgray;
+  border-radius: 0.2rem;
+}
+
+.title {
+  color: white;
+  white-space: nowrap;
+}
+
+.service-list > li {
+  padding: 0.1rem 0;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.success {
+  color: green;
+  font-weight: 500;
+}
