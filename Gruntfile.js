@@ -54,7 +54,7 @@ module.exports = function (grunt) {
     jsbeautifier: {
       files: ['<%= project.src %>/**/*'],
       options: {
-        config: ''
+        config: '.jsbeautifyrc'
       }
     },
     browserify: {
@@ -85,3 +85,4 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.registerTask('default', ['jsbeautifier', 'eslint', 'clean', 'browserify', 'copy', 'compress']);
 };
+
