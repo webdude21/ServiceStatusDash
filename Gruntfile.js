@@ -1,11 +1,18 @@
 module.exports = function (grunt) {
-  const packageTarget = 'target/<%= pkg.name %>.zip';
+  const target = '<%= project.target %>',
+    packageTarget = '<%= pkg.name %>.zip',
+    sourceFiles = '<%= project.src %>/**/*.js',
+    targetFolder = '<%= project.target %>';
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     project: {
       root: 'src',
+      target: 'target',
       src: '<%= project.root %>/scripts',
+      bundle: '<%= project.target %>/scripts/module.js',
+      views: '<%= project.root %>/views',
+      images: '<%= project.root %>/images',
       libs: '<%= project.root %>/lib',
       css: '<%= project.root %>/styles'
     },
@@ -15,16 +22,57 @@ module.exports = function (grunt) {
           archive: packageTarget
         },
         files: [
-          { expand: true, cwd: '<%= project.root %>', src: ['**/*'], dest: '/' }
+          { expand: true, cwd: '<%= project.root %>', src: ['**/*'], dest: targetFolder }
         ]
       }
     },
+    copy: {
+      img: {
+        files: [
+          { expand: true, cwd: '<%= project.root %>', src: ['images/**/*'], dest: targetFolder }
+        ]
+      },
+      css: {
+        files: [
+          { expand: true, cwd: '<%= project.root %>', src: ['styles/**/*'], dest: targetFolder }
+        ]
+      },
+      views: {
+        files: [
+          { expand: true, cwd: '<%= project.root %>', src: ['views/**/*'], dest: targetFolder }
+        ]
+      },
+      manifest: {
+        files: [{
+          expand: true,
+          cwd: '<%= project.root %>',
+          src: ['*.json'],
+          dest: '<%= project.target %>'
+        }]
+      }
+    },
+    jsbeautifier: {
+      files: ['<%= project.src %>/**/*'],
+      options: {
+        config: ''
+      }
+    },
+    browserify: {
+      dist: {
+        files: {
+          '<%= project.bundle %>': [sourceFiles]
+        }
+      }
+    },
     eslint: {
-      app: ['<%= project.src %>/**/*.js']
+      app: [sourceFiles]
     },
     clean: {
       zip: {
         src: [packageTarget]
+      },
+      target: {
+        src: [target]
       }
     }
   });
@@ -32,6 +80,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-compress');
-  grunt.registerTask('default', ['eslint', 'clean', 'compress']);
-  grunt.registerTask('build', ['clean', 'compress']);
+  grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-jsbeautifier');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.registerTask('default', ['jsbeautifier', 'eslint', 'clean', 'browserify', 'copy', 'compress']);
 };

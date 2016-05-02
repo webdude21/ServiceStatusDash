@@ -1,3 +1,3 @@
-(function (request) {
+var request = require('../util/request.js');
 
-}(servicedash.request));
+request('https://question--answer.herokuapp.com/api/').get().then();

@@ -25,9 +25,11 @@
   "devDependencies": {
     "browserify": "^13.0.0",
     "grunt": "^1.0.1",
+    "grunt-browserify": "^5.0.0",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-compress": "^1.2.0",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-eslint": "^18.1.0",
     "grunt-jsbeautifier": "^0.2.12"
   },

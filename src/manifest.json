@@ -6,17 +6,16 @@
   "description": "A Chrome extension for Fuelo's fuel price service",
   "version": "0.1",
   "options_page": "views/options.html",
+  "options_ui": {
+    "page": "views/options.html",
+    "chrome_style": true
+  },
   "browser_action": {
     "default_popup": "views/popup.html"
   },
-  "background": {
-    "scripts": ["scripts/background/main.js"],
-    "persistent": false
-  },
   "permissions": [
     "activeTab",
-    "storage",
-    "http://fuelo.net/api/"
+    "storage"
   ],
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
   "web_accessible_resources": [
