@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "ServiceDash",
+  "author": "Dimo Petrov",
+  "homepage_url": "https://github.com/webdude21/FueloForChrome",
+  "description": "A Chrome extension for Fuelo's fuel price service",
+  "version": "0.1",
+  "options_page": "views/options.html",
+  "browser_action": {
+    "default_popup": "views/popup.html"
+  },
+  "background": {
+    "scripts": ["scripts/background/main.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "http://fuelo.net/api/"
+  ],
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+  "web_accessible_resources": [
+    "img/icon128.png"
+  ]
+}

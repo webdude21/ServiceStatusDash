@@ -1,6 +1,6 @@
 {
   "name": "servicedash",
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "Service status dashboard as Google Chrome extension",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,7 @@
     "url": "https://github.com/webdude21/ServiceStatusDash/issues"
   },
   "devDependencies": {
+    "browserify": "^13.0.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.0.0",

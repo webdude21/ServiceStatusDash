@@ -2,6 +2,7 @@
 src/*/.gitignore
 src/*/target/
 /tmp
+target/
 
 # Ignore IntelliJ project and settings files
 .idea

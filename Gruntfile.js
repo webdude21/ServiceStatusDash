@@ -1,4 +1,6 @@
 module.exports = function (grunt) {
+  const packageTarget = 'target/<%= pkg.name %>.zip';
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     project: {
@@ -10,7 +12,7 @@ module.exports = function (grunt) {
     compress: {
       main: {
         options: {
-          archive: '<%= pkg.name %>.zip'
+          archive: packageTarget
         },
         files: [
           { expand: true, cwd: '<%= project.root %>', src: ['**/*'], dest: '/' }
@@ -22,7 +24,7 @@ module.exports = function (grunt) {
     },
     clean: {
       zip: {
-        src: ['<%= pkg.name %>.zip']
+        src: [packageTarget]
       }
     }
   });
@@ -31,4 +33,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.registerTask('default', ['eslint', 'clean', 'compress']);
+  grunt.registerTask('build', ['clean', 'compress']);
 };
