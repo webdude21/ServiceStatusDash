@@ -1,8 +1,9 @@
 {
   "ecmaFeatures": {},
   "globals": {
-    "servicedash": true,
-    "XMLHttpRequest": true
+    "document": true,
+    "XMLHttpRequest": true,
+    "chrome": true
   },
   "env": {
     "node": true,

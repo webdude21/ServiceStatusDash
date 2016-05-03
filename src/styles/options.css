@@ -14,9 +14,12 @@ body {
 
 .select-list {
   margin-top: 0.2rem;
+  min-width: 10rem;
+  min-height: 15rem;
 }
 
 .button-list-box {
+  justify-content: space-around;
   display: flex;
   padding: 0.5rem;
   flex-direction: column;
@@ -24,15 +27,4 @@ body {
 
 label {
   display: block;
-}
-
-.heading {
-  padding: 0.5rem;
-  background-color: lightgray;
-}
-
-.title {
-  color: white;
-  white-space: nowrap;
-  margin: 0;
 }
