@@ -6,20 +6,27 @@ module.exports = {
 
     while (currentChild) {
       let childToMove = currentChild;
-
-			if (typeof filterPredicate === 'function' && !filterPredicate(currentChild)) {
-        childToMove = null;
-      }
-
       currentChild = currentChild.nextElementSibling;
 
-      if (childToMove) {
+      if (!(typeof filterPredicate === 'function' && !filterPredicate(childToMove))) {
         newParent.appendChild(childToMove);
       }
     }
   },
   moveSelectedItemsBetweenParents: function (oldParent, newParent) {
-    this.moveNodesFromParentToParent(oldParent, newParent, node => node.selected)
+    this.moveNodesFromParentToParent(oldParent, newParent, node => node.selected);
+  },
+  getValuesFromSelect: function (selector) {
+    let servicesSelect = this.getById(selector),
+      currentChild = servicesSelect.firstChild,
+      result = [];
+
+    while (currentChild) {
+      result.push(currentChild.value);
+      currentChild = currentChild.nextElementSibling;
+    }
+
+    return result;
   },
   populateList: function (selector, data) {
     let servicesSelect = this.getById(selector),

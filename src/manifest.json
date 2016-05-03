@@ -3,9 +3,13 @@
   "name": "Service Status Dashboard",
   "author": "Dimo Petrov",
   "homepage_url": "https://github.com/webdude21/ServiceStatusDash",
-  "description": "A Chrome extension for Fuelo's fuel price service",
+  "description": "A Chrome extension designed to monitor the status of services",
   "version": "0.1",
   "options_page": "views/options.html",
+  "options_ui": {
+    "page": "views/options.html",
+    "chrome_style": true
+  },
   "browser_action": {
     "default_popup": "views/popup.html"
   },

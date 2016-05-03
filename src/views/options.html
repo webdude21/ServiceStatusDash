@@ -2,32 +2,33 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Service Status Dashboard - Options</title>
-    <link rel="stylesheet" type="text/css" href="../styles/options.css">
+  <meta charset="utf-8">
+  <title>Service Status Dashboard - Options</title>
+  <link rel="stylesheet" type="text/css" href="../styles/options.css">
 </head>
 
 <body>
-<header class="heading">
-    <h3 class="title">Service Status Dashboard - Options</h3>
-</header>
-<div id="wrapper">
+  <div id="wrapper">
     <section class="left-list-box list-box">
-        <label for="services-list">Services:</label>
-        <select id="services-list" class="select-list" multiple></select>
+      <label for="services-list">Services:</label>
+      <select id="services-list" class="select-list" multiple></select>
     </section>
     <section class="button-list-box">
-        <button type="button" class="standard-button" id="btn-select-all">>></button>
-        <button type="button" class="standard-button" id="btn-remove-all"><<</button>
-        <button type="button" class="standard-button" id="btn-add-selected">></button>
-        <button type="button" class="standard-button" id="btn-remove-selected"><</button>
+      <button type="button" class="standard-button" id="btn-select-all">>></button>
+      <button type="button" class="standard-button" id="btn-remove-all"><<</button>
+      <button type="button" class="standard-button" id="btn-add-selected">></button>
+      <button type="button" class="standard-button" id="btn-remove-selected"><</button>
+      <button type="button" class="standard-button" id="btn-save">Save</button>
     </section>
     <section class="right-list-box list-box">
-        <label for="selected-services-list">Selected services:</label>
-        <select id="selected-services-list" class="select-list" multiple></select>
+      <label for="selected-services-list">Selected services:</label>
+      <select id="selected-services-list" class="select-list" multiple></select>
     </section>
-</div>
-<script type="text/javascript" src="../scripts/module.js"></script>
+    <section>
+      <div id="status"></div>
+    </section>
+  </div>
+  <script type="text/javascript" src="../scripts/module.js"></script>
 </body>
 
 </html>

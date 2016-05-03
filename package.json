@@ -1,7 +1,7 @@
 {
   "name": "servicedash",
   "version": "0.1.0",
-  "description": "Service status dashboard as Google Chrome extension",
+  "description": "A Chrome extension designed to monitor the status of services",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
