@@ -35,17 +35,9 @@ module.exports = function request(url) {
   };
 
   return {
-    'get': function (args) {
-      return core.ajax('GET', args);
-    },
-    'post': function (args) {
-      return core.ajax('POST', args);
-    },
-    'put': function (args) {
-      return core.ajax('PUT', args);
-    },
-    'delete': function (args) {
-      return core.ajax('DELETE', args);
-    }
+    'get': args => core.ajax('GET', args),
+    'post': args => core.ajax('POST', args),
+    'put': args => core.ajax('PUT', args),
+    'delete': args => core.ajax('DELETE', args)
   };
 };

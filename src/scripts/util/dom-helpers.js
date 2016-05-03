@@ -1,6 +1,12 @@
 module.exports = {
   getById: id => document.getElementById(id),
-  addClickHandler: (id, handler) => document.getElementById(id).addEventListener('click', handler),
+  addClickHandler: function (id, handler) {
+    let domElement = document.getElementById(id);
+
+    if (domElement) {
+      domElement.addEventListener('click', handler);
+    }
+  },
   moveNodesFromParentToParent: function (oldParent, newParent, filterPredicate) {
     let currentChild = oldParent.firstChild;
 
@@ -28,19 +34,22 @@ module.exports = {
 
     return result;
   },
+  toOption: function (value) {
+    let option = document.createElement('option');
+    option.value = value;
+    option.text = value;
+    return option;
+  },
   populateList: function (selector, data) {
     let servicesSelect = this.getById(selector),
-      fragment = document.createDocumentFragment(),
-      createOption = function (service) {
-        let option = document.createElement('option');
-        option.value = service;
-        option.text = service;
-        fragment.appendChild(option);
-      };
+      fragment = document.createDocumentFragment();
 
-    data.forEach(createOption);
+    if (!servicesSelect) {
+      return null;
+    }
+
+    data.map(this.toOption).forEach(option => fragment.appendChild(option));
     servicesSelect.appendChild(fragment);
-
     return servicesSelect;
   }
 };

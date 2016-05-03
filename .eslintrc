@@ -1,13 +1,13 @@
 {
   "ecmaFeatures": {},
   "globals": {
-    "document": true,
-    "XMLHttpRequest": true,
     "chrome": true
   },
   "env": {
     "node": true,
-    "es6": true
+    "es6": true,
+    "browser": true,
+    "commonjs": true
   },
   "parserOptions": {
     "sourceType": "module",
@@ -98,7 +98,7 @@
     "no-trailing-spaces": 2,
     "no-this-before-super": 0,
     "no-throw-literal": 0,
-    "no-undef": 1,
+    "no-undef": 2,
     "no-undef-init": 2,
     "no-undefined": 0,
     "no-unexpected-multiline": 0,

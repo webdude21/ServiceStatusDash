@@ -10,7 +10,8 @@ module.exports = function (grunt) {
       root: 'src',
       target: 'target',
       src: '<%= project.root %>/scripts',
-      bundle: '<%= project.target %>/scripts/module.js',
+      optionsBundle: '<%= project.target %>/scripts/options-bundle.js',
+      popupBundle: '<%= project.target %>/scripts/popup-bundle.js',
       views: '<%= project.root %>/views',
       images: '<%= project.root %>/images',
       libs: '<%= project.root %>/lib',
@@ -58,9 +59,14 @@ module.exports = function (grunt) {
       }
     },
     browserify: {
-      dist: {
+      optionsBundle: {
         files: {
-          '<%= project.bundle %>': [sourceFiles]
+          '<%= project.optionsBundle %>': [sourceFiles, '!<%= project.src %>/controllers/popup.js']
+        }
+      },
+      popupBundle: {
+        files: {
+          '<%= project.popupBundle %>': [sourceFiles, '!<%= project.src %>/controllers/options-page.js']
         }
       }
     },
@@ -80,6 +86,7 @@ module.exports = function (grunt) {
         files: ['<%= project.root %>/**/*'],
         tasks: ['development'],
         options: {
+          livereload: true,
           debounceDelay: 250
         }
       }
