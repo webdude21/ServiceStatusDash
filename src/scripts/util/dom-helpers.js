@@ -43,6 +43,7 @@ module.exports = {
   toListItem: function (value) {
     let listItem = document.createElement('li');
     listItem.textContent = value;
+    listItem.className = 'success';
     return listItem;
   },
   populateList: function (selector, data, itemMapper) {
