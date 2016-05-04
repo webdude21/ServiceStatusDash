@@ -2,7 +2,8 @@ module.exports = function (grunt) {
   const target = '<%= project.target %>',
     packageTarget = '<%= pkg.name %>.zip',
     sourceFiles = '<%= project.src %>/**/*.js',
-    targetFolder = '<%= project.target %>';
+    targetFolder = '<%= project.target %>',
+    allFiles = '**/*';
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -13,7 +14,7 @@ module.exports = function (grunt) {
       optionsBundle: '<%= project.target %>/scripts/options-bundle.js',
       popupBundle: '<%= project.target %>/scripts/popup-bundle.js',
       views: '<%= project.root %>/views',
-      images: '<%= project.root %>/images',
+      img: '<%= project.root %>/img',
       libs: '<%= project.root %>/lib',
       css: '<%= project.root %>/styles'
     },
@@ -23,7 +24,7 @@ module.exports = function (grunt) {
           archive: packageTarget
         },
         files: [
-          { expand: true, cwd: '<%= project.root %>', src: ['**/*'], dest: targetFolder }
+          { expand: true, cwd: '<%= project.root %>', src: [allFiles], dest: targetFolder }
         ]
       }
     },
@@ -53,7 +54,7 @@ module.exports = function (grunt) {
       }
     },
     jsbeautifier: {
-      files: ['<%= project.root %>/**/*'],
+      files: ['<%= project.root %>/**/*', '!<%= project.img %>/**/*'],
       options: {
         config: '.jsbeautifyrc'
       }
@@ -84,7 +85,7 @@ module.exports = function (grunt) {
     watch: {
       src: {
         files: ['<%= project.root %>/**/*'],
-        tasks: ['development'],
+        tasks: ['default'],
         options: {
           livereload: true,
           debounceDelay: 250

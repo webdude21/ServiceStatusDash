@@ -11,7 +11,13 @@
     "chrome_style": true
   },
   "browser_action": {
+    "default_icon": "img/icons/success48.png",
     "default_popup": "views/popup.html"
+  },
+  "icons": {
+    "16": "img/icons/`.png",
+    "48": "img/icons/success48.png",
+    "128": "img/icons/success128.png"
   },
   "permissions": [
     "activeTab",
