@@ -1,8 +1,10 @@
+/**
+ * Service class to hold the name and status of a service
+ */
 class Service {
-
-  constructor(name, status) {
+  constructor(name = 'service', working = true) {
     this.name = name;
-    this.status = status;
+    this.working = working;
   }
 }
 
