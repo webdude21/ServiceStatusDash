@@ -40,7 +40,12 @@ module.exports = {
     option.text = value;
     return option;
   },
-  populateList: function (selector, data) {
+  toListItem: function (value) {
+    let listItem = document.createElement('li');
+    listItem.textContent = value;
+    return listItem;
+  },
+  populateList: function (selector, data, itemMapper) {
     let servicesSelect = this.getById(selector),
       fragment = document.createDocumentFragment();
 
@@ -48,7 +53,7 @@ module.exports = {
       return null;
     }
 
-    data.map(this.toOption).forEach(option => fragment.appendChild(option));
+    data.map(itemMapper).forEach(option => fragment.appendChild(option));
     servicesSelect.appendChild(fragment);
     return servicesSelect;
   }
