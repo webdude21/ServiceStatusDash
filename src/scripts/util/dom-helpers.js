@@ -34,6 +34,13 @@ module.exports = {
 
     return result;
   },
+  showSavingStatus(label, delay = 500) {
+    let originalText = label.textContent;
+    label.textContent = 'Saving';
+    setTimeout(() => {
+      label.textContent = originalText;
+    }, delay);
+  },
   toOption: function (value) {
     let option = document.createElement('option');
     option.value = value;

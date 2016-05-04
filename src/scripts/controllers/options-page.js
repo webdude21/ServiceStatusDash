@@ -15,6 +15,7 @@
     domHelpers.addClickHandler('btn-remove-selected',
       () => domHelpers.moveSelectedItemsBetweenParents(selectedServicesSelect, servicesSelect));
     domHelpers.addClickHandler('btn-save', () => {
+      domHelpers.showSavingStatus(domHelpers.getById('status'));
       storage.saveOptions(domHelpers.getValuesFromSelect('services-list'), domHelpers.getValuesFromSelect('selected-services-list'));
     });
   }
