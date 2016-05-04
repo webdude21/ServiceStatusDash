@@ -13,7 +13,7 @@ body {
 }
 
 .select-list {
-  margin-top: 0.2rem;
+  margin-top: 0.3rem;
   min-width: 10rem;
   min-height: 15rem;
 }
@@ -27,4 +27,9 @@ body {
 
 label {
   display: block;
+}
+
+footer {
+  padding: 0 1rem 1rem;
+  text-align: center;
 }

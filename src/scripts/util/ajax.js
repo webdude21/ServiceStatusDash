@@ -1,21 +1,19 @@
 module.exports = function request(url) {
-  var core = {
+  let core = {
     ajax: function (method, args) {
       return new Promise(function (resolve, reject) {
-        var client = new XMLHttpRequest();
-        var uri = url;
+        let client = new XMLHttpRequest(),
+          uri = url;
 
         if (args && (method === 'POST' || method === 'PUT')) {
           uri += '?';
-          var argumentsCount = 0;
-          for (var key in args) {
-            if (args.hasOwnProperty(key)) {
-              if (argumentsCount++) {
-                uri += '&';
-              }
-              uri += encodeURIComponent(key) + '=' + encodeURIComponent(args[key]);
+
+          Object.keys(args).forEach((key, index) => {
+            if (index) {
+              uri += '&';
             }
-          }
+            uri += encodeURIComponent(key) + '=' + encodeURIComponent(args[key]);
+          });
         }
 
         client.open(method, uri);
@@ -35,9 +33,9 @@ module.exports = function request(url) {
   };
 
   return {
-    get: args => core.ajax('GET', args),
-    post: args => core.ajax('POST', args),
-    put: args => core.ajax('PUT', args),
-    delete: args => core.ajax('DELETE', args)
+    'get': args => core.ajax('GET', args),
+    'post': args => core.ajax('POST', args),
+    'put': args => core.ajax('PUT', args),
+    'delete': args => core.ajax('DELETE', args)
   };
 };

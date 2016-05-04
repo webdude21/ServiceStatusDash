@@ -67,7 +67,7 @@ module.exports = function (grunt) {
       },
       popupBundle: {
         files: {
-          '<%= project.popupBundle %>': [sourceFiles, '!<%= project.src %>/controllers/options-page.js']
+          '<%= project.popupBundle %>': [sourceFiles, '!<%= project.src %>/controllers/options.js']
         }
       }
     },
