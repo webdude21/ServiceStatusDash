@@ -41,16 +41,16 @@ module.exports = {
       label.textContent = originalText;
     }, delay);
   },
-  toOption: function (value) {
+  serviceToOption: function (service) {
     let option = document.createElement('option');
-    option.value = value;
-    option.text = value;
+    option.value = service.name;
+    option.text = service.name;
     return option;
   },
-  toListItem: function (value) {
+  serviceToListItem: function (service) {
     let listItem = document.createElement('li');
-    listItem.textContent = value;
-    listItem.className = 'success';
+    listItem.textContent = service.name;
+    listItem.className = service.working ? 'success' : 'fail';
     return listItem;
   },
   populateList: function (selector, data, itemMapper) {
