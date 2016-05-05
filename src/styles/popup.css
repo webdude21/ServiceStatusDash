@@ -9,12 +9,31 @@
 }
 
 .service-list > li {
-  padding: 0.1rem 0;
+  padding: 0.2rem 0.5rem;
   font-weight: bold;
   white-space: nowrap;
 }
 
-.success {
-  color: green;
+.service-list:empty:after {
+  content: 'No selected services to monitor. Please go to options and select some!';
+  color: orange;
+  font-weight: bolder;
+  font-size: 1rem;
+  display: block;
+  width: 35rem;
+  text-align: center;
+}
+
+.success,
+.fail {
   font-weight: 500;
+  color: white;
+}
+
+.success {
+  background-color: green;
+}
+
+.fail {
+  background-color: red;
 }

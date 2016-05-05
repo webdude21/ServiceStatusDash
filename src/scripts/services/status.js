@@ -20,7 +20,7 @@ module.exports = {
     return BRANCHES.map(currentBranch => {
       let projectBranch = project['local'][`refs/heads/${currentBranch}`];
       if (projectBranch) {
-        return new Service(`${currentBranch}::${projectName}`, this.getStatus(projectBranch));
+        return new Service(`${projectName}->${currentBranch}`, this.getStatus(projectBranch));
       } else {
         return null;
       }
