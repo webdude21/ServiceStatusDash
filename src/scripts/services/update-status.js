@@ -3,16 +3,19 @@ let statusService = require('./status'),
   iconUpdate = require('../util/icon-update');
 
 module.exports = function () {
-  function handleServiceUpdate(fetchedAvailableServices, { availableServices, selectedServices }) {
-    fetchedAvailableServices.forEach(service => {
+  function handleServiceUpdate([{ availableServices, selectedServices }, fetchedAvailableServices]) {
+    let newDiscoveredServices,
+      allKnownServices = availableServices.concat(selectedServices);
 
-    });
+    newDiscoveredServices = fetchedAvailableServices
+      .filter(service => !allKnownServices.some(knownService => knownService.name === service.name));
 
+    storage.saveOptions(newDiscoveredServices, selectedServices);
     iconUpdate(selectedServices);
+    console.info('Service updated');
   }
 
-  Promise
-    .all([storage.loadOptions(), statusService.fetch()])
+  Promise.all([storage.loadOptions(), statusService.getProjectStates()])
     .then(handleServiceUpdate)
-    .catch((e) => console.warn('Update failed. Error message: %s', e));
+    .catch(e => console.error('Update failed. Error message: %s', e));
 };

@@ -102,7 +102,7 @@ module.exports = function (grunt) {
     watch: {
       src: {
         files: ['<%= project.root %>/**/*'],
-        tasks: ['default'],
+        tasks: ['development'],
         options: {
           livereload: true,
           debounceDelay: 250

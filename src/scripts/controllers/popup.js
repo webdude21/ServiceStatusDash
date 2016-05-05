@@ -1,7 +1,12 @@
 (function () {
   const storage = require('../services/storage'),
-    domHelpers = require('../util/dom-helpers');
+    domHelpers = require('../util/dom-helpers'),
+    statusUpdate = require('../services/update-status');
 
-  storage.loadOptions()
-    .then(({ selectedServices }) => domHelpers.populateList('service-list', selectedServices, domHelpers.toListItem));
+  setTimeout(() => {
+    storage.loadOptions()
+      .then(({ selectedServices }) => domHelpers.populateList('service-list', selectedServices, domHelpers.toListItem));
+
+    statusUpdate();
+  }, 5000);
 }());

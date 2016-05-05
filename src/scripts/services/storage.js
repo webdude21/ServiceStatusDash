@@ -14,7 +14,7 @@ module.exports = {
    */
   loadOptions() {
     return new Promise(resolve => chrome.storage.sync.get({
-      availableServices: ['master', 'rel-1.38', 'rel-1.36', 'rel-1.34', 'rel-1.32'],
+      availableServices: [],
       selectedServices: []
     }, resolve));
   }

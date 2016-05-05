@@ -25,7 +25,7 @@
   "permissions": [
     "activeTab",
     "storage",
-    "http://fuelo.net/api/"
+    "http://veui5infra.dhcp.wdf.sap.corp:8080/databinding/proxy/https/git.wdf.sap.corp/access/"
   ],
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
   "web_accessible_resources": [
