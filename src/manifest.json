@@ -14,6 +14,9 @@
     "default_icon": "img/icons/success48.png",
     "default_popup": "views/popup.html"
   },
+  "background": {
+    "scripts": ["scripts/background-bundle.js"]
+  },
   "icons": {
     "16": "img/icons/success16.png",
     "48": "img/icons/success48.png",

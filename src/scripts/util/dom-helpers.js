@@ -34,9 +34,9 @@ module.exports = {
 
     return result;
   },
-  showSavingStatus(label, delay = 500) {
+  showSavingStatus(label, delay = 800) {
     let originalText = label.textContent;
-    label.textContent = 'Saving';
+    label.textContent = 'Saving...';
     setTimeout(() => {
       label.textContent = originalText;
     }, delay);

@@ -13,6 +13,7 @@ module.exports = function (grunt) {
       src: '<%= project.root %>/scripts',
       optionsBundle: '<%= project.target %>/scripts/options-bundle.js',
       popupBundle: '<%= project.target %>/scripts/popup-bundle.js',
+      backgroundBundle: '<%= project.target %>/scripts/background-bundle.js',
       views: '<%= project.root %>/views',
       img: '<%= project.root %>/img',
       libs: '<%= project.root %>/lib',
@@ -62,12 +63,28 @@ module.exports = function (grunt) {
     browserify: {
       optionsBundle: {
         files: {
-          '<%= project.optionsBundle %>': [sourceFiles, '!<%= project.src %>/controllers/popup.js']
+          '<%= project.optionsBundle %>': [
+            sourceFiles,
+            '!<%= project.src %>/controllers/popup.js',
+            '!<%= project.src %>/controllers/background.js'
+          ]
         }
       },
       popupBundle: {
         files: {
-          '<%= project.popupBundle %>': [sourceFiles, '!<%= project.src %>/controllers/options.js']
+          '<%= project.popupBundle %>': [
+            sourceFiles,
+            '!<%= project.src %>/controllers/options.js',
+            '!<%= project.src %>/controllers/background.js']
+        }
+      },
+      backgroundBundle: {
+        files: {
+          '<%= project.backgroundBundle %>': [
+            sourceFiles,
+            '!<%= project.src %>/controllers/popup.js',
+            '!<%= project.src %>/controllers/options.js'
+          ]
         }
       }
     },
