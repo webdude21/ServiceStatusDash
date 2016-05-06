@@ -22,6 +22,6 @@ function handleServiceUpdate([{ availableServices, selectedServices }, fetchedAv
 }
 
 module.exports = function () {
-    return Promise.all([storage.loadOptions(), statusService.getProjectStates()])
-      .then(handleServiceUpdate);
+  return Promise.all([storage.loadOptions(), statusService.getProjectStates()])
+    .then(handleServiceUpdate);
 };
