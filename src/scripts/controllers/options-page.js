@@ -29,7 +29,8 @@ statusUpdate()
     console.info('Fetched services from backend');
     populateOptionsPage();
   })
-  .catch(() => {
+  .catch((e) => {
+    console.warn(e);
     console.info('Fetched services from cache');
     populateOptionsPage();
   });
