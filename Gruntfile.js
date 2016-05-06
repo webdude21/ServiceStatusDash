@@ -25,7 +25,7 @@ module.exports = function (grunt) {
           archive: packageTarget
         },
         files: [
-          { expand: true, cwd: '<%= project.root %>', src: [allFiles], dest: targetFolder }
+          { expand: true, cwd: '<%= project.target %>', src: [allFiles] }
         ]
       }
     },
