@@ -8,9 +8,8 @@ const BRANCHES = ['master', 'rel-1.38', 'rel-1.36', 'rel-1.34', 'rel-1.32', 'rel
 
 module.exports = {
   transformResult: function (result) {
-    let transformedResult = result.map(rawResult => this.getBranchStates(JSON.parse(rawResult.substring(5)))),
-      flatResult = Array.prototype.concat(...transformedResult);
-    return flatResult;
+    let transformedResult = result.map(rawResult => this.getBranchStates(JSON.parse(rawResult.substring(5))));
+    return Array.prototype.concat(...transformedResult);
   },
   getStatus: projectBranch => projectBranch['permissions']['submit']['rules']['global:Registered-Users']['action'] === OK_STATUS,
   getBranchStates: function (branchInfo) {
