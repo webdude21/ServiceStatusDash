@@ -31,7 +31,8 @@ describe('domhelpers', () => {
     beforeEach(() => sandbox = sinon.sandbox.create());
     afterEach(() => sandbox.restore());
 
-    it('should use addEventListener', () => {
+    it('should exist', () => domHelper.addClickHandler.should.be.an('function'));
+    it('should use addEventListener if called with existing dom element id', () => {
       /* eslint-disable no-native-reassign */
       let domObject = { addEventListener: () => {} },
         event = 'click',
@@ -43,6 +44,17 @@ describe('domhelpers', () => {
       domHelper.addClickHandler(id, handler);
       getByIdStub.should.have.been.calledWith(id);
       domObjectStub.should.have.been.calledWith(event, handler);
+    });
+
+    it('should do nothing when no dom element with this id', () => {
+      let noSuchId = 'bla',
+        domObject = { addEventListener: () => {} },
+        domObjectStub = sandbox.stub(domObject, 'addEventListener'),
+        getByIdStub = sandbox.stub(domHelper, 'getById').withArgs(noSuchId).returns(null);
+
+      domHelper.addClickHandler(noSuchId);
+      getByIdStub.should.have.been.calledWith(noSuchId);
+      domObjectStub.should.not.have.been.called;
     });
   });
 });
