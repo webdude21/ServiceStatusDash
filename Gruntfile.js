@@ -2,6 +2,7 @@ module.exports = function (grunt) {
   const target = '<%= project.target %>',
     packageTarget = '<%= pkg.name %>.zip',
     sourceFiles = '<%= project.src %>/**/*.js',
+    testFiles = '<%= project.tests %>',
     targetFolder = '<%= project.target %>',
     allFiles = '**/*';
 
@@ -11,6 +12,7 @@ module.exports = function (grunt) {
       root: 'src',
       target: 'target',
       src: '<%= project.root %>/scripts',
+      tests: 'tests/',
       optionsBundle: '<%= project.target %>/scripts/options-bundle.js',
       popupBundle: '<%= project.target %>/scripts/popup-bundle.js',
       backgroundBundle: '<%= project.target %>/scripts/background-bundle.js',
@@ -55,7 +57,7 @@ module.exports = function (grunt) {
       }
     },
     jsbeautifier: {
-      files: ['<%= project.root %>/**/*', '!<%= project.img %>/**/*'],
+      files: ['<%= project.root %>/**/*', '<%= project.tests %>/**/*', '!<%= project.img %>/**/*'],
       options: {
         config: '.jsbeautifyrc'
       }
@@ -89,7 +91,7 @@ module.exports = function (grunt) {
       }
     },
     eslint: {
-      app: [sourceFiles]
+      app: [sourceFiles, testFiles]
     },
     clean: {
       zip: {

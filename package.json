@@ -4,7 +4,10 @@
   "description": "A Chrome extension designed to monitor the status of services",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests --recursive"
+  },
+  "engines": {
+    "node": "^6.0.0"
   },
   "repository": {
     "type": "git",
@@ -24,6 +27,7 @@
   },
   "devDependencies": {
     "browserify": "^13.0.0",
+    "chai": "^3.5.0",
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
     "grunt-cli": "^1.2.0",
@@ -32,7 +36,10 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-eslint": "^18.1.0",
-    "grunt-jsbeautifier": "^0.2.12"
+    "grunt-jsbeautifier": "^0.2.12",
+    "mocha": "^2.4.5",
+    "sinon": "^1.17.4",
+    "sinon-chai": "^2.8.0"
   },
   "homepage": "https://github.com/webdude21/ServiceStatusDash#readme"
 }

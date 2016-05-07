@@ -1,7 +1,7 @@
 module.exports = {
   getById: id => document.getElementById(id),
   addClickHandler: function (id, handler) {
-    let domElement = document.getElementById(id);
+    let domElement = this.getById(id);
 
     if (domElement) {
       domElement.addEventListener('click', handler);

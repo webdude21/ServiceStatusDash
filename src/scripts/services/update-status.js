@@ -21,7 +21,4 @@ function handleServiceUpdate([{ availableServices, selectedServices }, fetchedAv
   return storage.saveOptions(availableServices.concat(newDiscoveredServices), selectedServices);
 }
 
-module.exports = function () {
-  return Promise.all([storage.loadOptions(), statusService.fetchServices()])
-    .then(handleServiceUpdate);
-};
+module.exports = () => Promise.all([storage.loadOptions(), statusService.fetchServices()]).then(handleServiceUpdate);
