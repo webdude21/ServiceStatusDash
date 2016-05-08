@@ -1,7 +1,8 @@
 let chai = require('chai'),
   sinonChai = require('sinon-chai'),
   sinon = require('sinon'),
-  domHelper = require('../../src/scripts/util/dom-helpers');
+  domHelper = require('../../src/scripts/util/dom-helpers'),
+  functionShouldExist = fn => it('should exist', () => fn.should.be.a('function'));
 
 /* eslint-disable no-native-reassign, no-unused-expressions*/
 
@@ -16,7 +17,7 @@ describe('domhelpers', () => {
     beforeEach(() => sandbox = sinon.sandbox.create());
     afterEach(() => sandbox.restore());
 
-    it('should exist', () => domHelper.getById.should.be.a('function'));
+    functionShouldExist(domHelper.getById);
     it('should use getElementById', () => {
       global.document = { getElementById: () => {} };
       let id = 'id',
@@ -36,7 +37,7 @@ describe('domhelpers', () => {
     });
     afterEach(() => sandbox.restore());
 
-    it('should exist', () => domHelper.addClickHandler.should.be.a('function'));
+    functionShouldExist(domHelper.addClickHandler);
     it('should use addEventListener if called with existing dom element id', () => {
       let id = 'id',
         handler = () => {},
@@ -64,6 +65,8 @@ describe('domhelpers', () => {
       domObject = { textContent: 'someText' };
     });
     afterEach(() => sandbox.restore());
+
+    functionShouldExist(domHelper.showSavingStatus);
 
     it('should change the text of the passed dom element ', () => {
       domHelper.showSavingStatus(domObject);
