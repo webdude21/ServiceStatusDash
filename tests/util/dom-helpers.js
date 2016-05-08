@@ -2,6 +2,7 @@ let chai = require('chai'),
   sinonChai = require('sinon-chai'),
   sinon = require('sinon'),
   domHelper = require('../../src/scripts/util/dom-helpers'),
+  Service = require('../../src/scripts/models/service'),
   functionShouldExist = fn => it('should exist', () => fn.should.be.a('function'));
 
 /* eslint-disable no-native-reassign, no-unused-expressions*/
@@ -88,5 +89,35 @@ describe('domhelpers', () => {
 
     it('should throw if illegal argument is passed to the function',
       () => (() => domHelper.showSavingStatus()).should.throw());
+  });
+
+  describe('#serviceToOption()', () => {
+    let sandbox, domObject;
+    beforeEach(() => {
+      sandbox = sinon.sandbox.create();
+      domObject = {};
+    });
+    afterEach(() => sandbox.restore());
+
+    functionShouldExist(domHelper.serviceToOption);
+
+    it('should transform a service structure into "option" element', () => {
+      let serviceName = 'test-name',
+        service = new Service(serviceName),
+        createElementStub;
+      global.document = { createElement: () => {} };
+      createElementStub = sandbox.stub(document, 'createElement').withArgs('option').returns(domObject);
+
+      domHelper.serviceToOption(service);
+
+      createElementStub.should.have.been.called.calledWith('option');
+      domObject.should.to.have.property('value');
+      domObject.should.to.have.property('text');
+      domObject.value.should.equal(serviceName);
+      domObject.text.should.equal(serviceName);
+    });
+
+    it('should throw if illegal argument is passed to the function',
+      () => (() => domHelper.serviceToOption()).should.throw());
   });
 });
