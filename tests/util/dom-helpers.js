@@ -92,10 +92,10 @@ describe('domhelpers', () => {
   });
 
   describe('#serviceToOption()', () => {
-    let sandbox, domObject;
+    let sandbox;
     beforeEach(() => {
       sandbox = sinon.sandbox.create();
-      domObject = {};
+
     });
     afterEach(() => sandbox.restore());
 
@@ -103,6 +103,7 @@ describe('domhelpers', () => {
 
     it('should transform a service structure into "option" element', () => {
       let serviceName = 'test-name',
+        domObject = {},
         service = new Service(serviceName),
         createElementStub;
       global.document = { createElement: () => {} };
