@@ -18,7 +18,8 @@ function handleOptionsLoaded({ availableServices, selectedServices }) {
   domHelpers.addClickHandler('btn-save', () => {
     domHelpers.showSavingStatus(domHelpers.getById('status'));
     storage.saveOptions(domHelpers.getValuesFromSelect('services-list').map(item => new Service(item)),
-      domHelpers.getValuesFromSelect('selected-services-list').map(item => new Service(item)));
+        domHelpers.getValuesFromSelect('selected-services-list').map(item => new Service(item)))
+      .then(statusUpdate);
   });
 }
 

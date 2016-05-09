@@ -11,14 +11,19 @@ let statusService = require('./status'),
  */
 function handleServiceUpdate([{ availableServices, selectedServices }, fetchedAvailableServices]) {
   let newDiscoveredServices,
-    allKnownServices = availableServices.concat(selectedServices);
+    updatedSelectedService,
+    allKnownServices = availableServices.concat(selectedServices),
+    updateService = serviceToUpdate => fetchedAvailableServices
+    .find(service => service.name === serviceToUpdate.name);
 
   newDiscoveredServices = fetchedAvailableServices
     .filter(service => !allKnownServices.some(knownService => knownService.name === service.name));
 
-  iconUpdate(selectedServices);
+  updatedSelectedService = selectedServices.map(updateService);
+
+  iconUpdate(updatedSelectedService);
   console.info('Service updated');
-  return storage.saveOptions(availableServices.concat(newDiscoveredServices), selectedServices);
+  return storage.saveOptions((availableServices.concat(newDiscoveredServices)).map(updateService), updatedSelectedService);
 }
 
 module.exports = () => Promise.all([storage.loadOptions(), statusService.fetchServices()]).then(handleServiceUpdate);
