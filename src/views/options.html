@@ -14,11 +14,11 @@
       <select id="services-list" class="select-list" multiple></select>
     </section>
     <section class="button-list-box">
+      <button type="button" class="standard-button" id="btn-save">Save</button>
       <button type="button" class="standard-button" id="btn-select-all">>></button>
       <button type="button" class="standard-button" id="btn-remove-all"><<</button>
       <button type="button" class="standard-button" id="btn-add-selected">></button>
       <button type="button" class="standard-button" id="btn-remove-selected"><</button>
-      <button type="button" class="standard-button" id="btn-save">Save</button>
     </section>
     <section class="right-list-box list-box">
       <label for="selected-services-list">Selected services:</label>
@@ -26,7 +26,11 @@
     </section>
   </div>
   <footer>
-    <label id="status">&nbsp;</label>
+    <section class="service-input-section">
+      <label for="service-input">Service address (url): </label>
+      <input type="url" id="service-input" class="service-input" required>
+    </section>
+    <label id="status" class="status-label">&nbsp;</label>
   </footer>
   <script type="text/javascript" src="../scripts/options-bundle.js"></script>
 </body>

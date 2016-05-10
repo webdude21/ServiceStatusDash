@@ -1,10 +1,10 @@
 let ajax = require('../util/ajax'),
-  Service = require('../models/service');
+  Service = require('../models/service'),
+  storage = require('../services/storage');
 
 const BRANCHES = ['master', 'rel-1.38', 'rel-1.36', 'rel-1.34', 'rel-1.32', 'rel-1.30', 'rel-1.28'],
   PROJECTS = ['openui5', 'sapui5/sapui5.runtime', 'sapui5/sapui5.dist'],
-  OK_STATUS = 'ALLOW',
-  PROJECT_RESOURCE_BASE = 'http://veui5infra.dhcp.wdf.sap.corp:8080/databinding/proxy/https/git.wdf.sap.corp/access/?project=';
+  OK_STATUS = 'ALLOW';
 
 module.exports = {
   transformResult: function (result) {
@@ -23,7 +23,14 @@ module.exports = {
   },
   fetchServices: function () {
     return new Promise((resolve, reject) => {
-      Promise.all(PROJECTS.map(projectName => ajax(PROJECT_RESOURCE_BASE + projectName).get()))
+      storage.loadOptions()
+        .then(({ serviceAddress }) => {
+          if (serviceAddress) {
+            return Promise.all(PROJECTS.map(projectName => ajax(`${serviceAddress}?project=${projectName}`).get()));
+          }
+
+          return reject('No service address is provided');
+        })
         .then(result => resolve(this.transformResult(result)))
         .catch(error => reject(error));
     });

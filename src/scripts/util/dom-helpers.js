@@ -34,6 +34,17 @@ module.exports = {
 
     return result;
   },
+  populateInput: function (id, text) {
+    let input = this.getById(id);
+
+    if (input) {
+      input.value = text;
+    }
+  },
+  retrieveTextFromInput: function (id) {
+    let input = this.getById(id);
+    return input ? input.value || '' : '';
+  },
   showSavingStatus(label, delay = 500) {
     let originalText = label.textContent;
     label.textContent = 'Saving...';

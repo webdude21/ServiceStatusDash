@@ -5,8 +5,8 @@ module.exports = {
    * @param selectedServices
    * @returns {Promise}
    */
-  saveOptions(availableServices, selectedServices) {
-    return new Promise(resolve => chrome.storage.sync.set({ selectedServices, availableServices }, resolve));
+  saveOptions(availableServices, selectedServices, serviceAddress) {
+    return new Promise(resolve => chrome.storage.sync.set({ selectedServices, availableServices, serviceAddress }, resolve));
   },
   /**
    * Loading the previously persisted state
@@ -15,7 +15,8 @@ module.exports = {
   loadOptions() {
     return new Promise(resolve => chrome.storage.sync.get({
       availableServices: [],
-      selectedServices: []
+      selectedServices: [],
+      serviceAddress: null
     }, resolve));
   }
 };

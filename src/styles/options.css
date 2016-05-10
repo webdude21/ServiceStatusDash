@@ -13,7 +13,6 @@ body {
 }
 
 .select-list {
-  margin-top: 0.3rem;
   min-width: 10rem;
   min-height: 15rem;
 }
@@ -25,11 +24,24 @@ body {
   flex-direction: column;
 }
 
+.service-input {
+  width: 100%;
+}
+
+.status-label {
+  margin-top: 0.5rem;
+}
+
 label {
   display: block;
+  margin-bottom: 0.2rem;
 }
 
 footer {
   padding: 0 1rem 1rem;
   text-align: center;
+}
+
+.service-input-section {
+  text-align: left;
 }
