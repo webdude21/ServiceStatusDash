@@ -93,10 +93,7 @@ describe('domhelpers', () => {
 
   describe('#serviceToOption()', () => {
     let sandbox;
-    beforeEach(() => {
-      sandbox = sinon.sandbox.create();
-
-    });
+    beforeEach(() => sandbox = sinon.sandbox.create());
     afterEach(() => sandbox.restore());
 
     functionShouldExist(domHelper.serviceToOption);
@@ -106,19 +103,63 @@ describe('domhelpers', () => {
         domObject = {},
         service = new Service(serviceName),
         createElementStub;
+
       global.document = { createElement: () => {} };
       createElementStub = sandbox.stub(document, 'createElement').withArgs('option').returns(domObject);
 
       domHelper.serviceToOption(service);
 
       createElementStub.should.have.been.called.calledWith('option');
-      domObject.should.to.have.property('value');
-      domObject.should.to.have.property('text');
+      domObject.should.have.property('value');
+      domObject.should.have.property('text');
       domObject.value.should.equal(serviceName);
       domObject.text.should.equal(serviceName);
     });
 
     it('should throw if illegal argument is passed to the function',
       () => (() => domHelper.serviceToOption()).should.throw());
+  });
+
+  describe('#serviceToListItem()', () => {
+    let sandbox,
+      serviceName = 'test-name',
+      domObject = {},
+      createElementStub;
+
+    beforeEach(() => {
+      sandbox = sinon.sandbox.create();
+      global.document = { createElement: () => {} };
+      createElementStub = sandbox.stub(document, 'createElement').withArgs('li').returns(domObject);
+    });
+
+    afterEach(() => sandbox.restore());
+
+    functionShouldExist(domHelper.serviceToOption);
+
+    it('should transform a service structure into "li" element with success class', () => {
+      domHelper.serviceToListItem(new Service(serviceName));
+      createElementStub.should.have.been.called.calledWith('li');
+      domObject.should.have.property('className');
+      domObject.should.have.property('textContent');
+      domObject.className.should.equal('success');
+      domObject.textContent.should.equal(serviceName);
+    });
+
+    it('should transform a service structure into "li" element with fail class', () => {
+      domHelper.serviceToListItem(new Service(serviceName, false));
+      createElementStub.should.have.been.called.calledWith('li');
+      domObject.should.have.property('className');
+      domObject.should.have.property('textContent');
+      domObject.className.should.equal('fail');
+      domObject.textContent.should.equal(serviceName);
+    });
+
+    it('should throw if illegal argument is passed to the function',
+      () => (() => domHelper.serviceToOption()).should.throw());
+
+    describe('#showSavingStatus', () => {
+
+
+    });
   });
 });
