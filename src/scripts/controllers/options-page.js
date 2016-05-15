@@ -25,15 +25,6 @@ function handleOptionsLoaded({ availableServices, selectedServices, serviceAddre
   });
 }
 
-let populateOptionsPage = () => storage.loadOptions().then(handleOptionsLoaded);
-
 statusUpdate()
-  .then(() => {
-    console.info('Fetched services from backend');
-    populateOptionsPage();
-  })
-  .catch((e) => {
-    console.warn(e);
-    console.info('Fetched services from cache');
-    populateOptionsPage();
-  });
+  .then(storage.loadOptions)
+  .then(handleOptionsLoaded);
