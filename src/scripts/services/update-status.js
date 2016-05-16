@@ -30,7 +30,6 @@ module.exports = () => Promise
   .all([storage.loadOptions(), statusService.fetchServices()])
   .then(handleServiceUpdate)
   .catch(() => {
-    console.log('Failed to fetch from backend, fetched from local storage');
-    return storage.loadOptions();
-  })
-  .then(({ selectedServices }) => iconUpdate(selectedServices));
+    console.info('Failed to fetch from backend, fetched from local storage');
+    return storage.loadOptions().then(({ selectedServices }) => iconUpdate(selectedServices));
+  });
