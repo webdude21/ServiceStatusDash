@@ -1,8 +1,10 @@
+const CONNECTION_ERROR_MESSAGE = 'Cannot connect to the provided address';
+
 module.exports = function request(url) {
   let core = {
     ajax: function (method, args) {
       return new Promise(function (resolve, reject) {
-        let client = new XMLHttpRequest(),
+        let xhr = new XMLHttpRequest(),
           uri = url;
 
         if (args && (method === 'POST' || method === 'PUT')) {
@@ -16,17 +18,17 @@ module.exports = function request(url) {
           });
         }
 
-        client.open(method, uri);
-        client.send();
-        client.onload = function () {
+        xhr.open(method, uri);
+        xhr.send();
+        xhr.onload = function () {
           if (this.status >= 200 && this.status < 300) {
             resolve(this.response);
           } else {
             reject(this.statusText);
           }
         };
-        client.onerror = function () {
-          reject(this.statusText);
+        xhr.onerror = function () {
+          reject(this.statusText || CONNECTION_ERROR_MESSAGE);
         };
       });
     }

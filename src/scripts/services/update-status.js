@@ -29,7 +29,7 @@ function handleServiceUpdate([{ availableServices, selectedServices }, fetchedAv
 module.exports = () => Promise
   .all([storage.loadOptions(), statusService.fetchServices()])
   .then(handleServiceUpdate)
-  .catch(() => {
-    console.info('Failed to fetch from backend, fetched from local storage');
+  .catch(err => {
+    console.warn(`Failed to fetch from backend, fetched from local storage. ${err}`);
     return storage.loadOptions().then(({ selectedServices }) => iconUpdate(selectedServices));
   });
