@@ -4,9 +4,9 @@ let statusService = require('./status'),
 
 /**
  * Updates the internal caches with the result from the service call.
- * @param availableServices
- * @param selectedServices
- * @param fetchedAvailableServices
+ * @param {Array.<Service>} availableServices
+ * @param {Array.<Service>} selectedServices
+ * @param {Array.<Service>} fetchedAvailableServices
  * @returns {*|Promise} which is resolved when the saving is done
  */
 function handleServiceUpdate([{ availableServices, selectedServices }, fetchedAvailableServices]) {

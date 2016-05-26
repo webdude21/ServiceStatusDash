@@ -2,6 +2,12 @@ const CONNECTION_ERROR_MESSAGE = 'Cannot connect to the provided address';
 
 module.exports = function request(url) {
   let core = {
+		/**
+     * Returns a Promise which when resolved returns the payload of the ajax call
+     * @param method
+     * @param args
+     * @returns {Promise}
+     */
     ajax: function (method, args) {
       return new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest(),
