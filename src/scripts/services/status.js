@@ -7,22 +7,22 @@ const BRANCHES = ['master', 'rel-1.40', 'rel-1.38', 'rel-1.36', 'rel-1.34', 'rel
   OK_STATUS = 'ALLOW';
 
 module.exports = {
-	/**
+  /**
    * Transform the result from the service call to a digestable format
    * @param result {Array.<Array<T>>}
    * @returns {Array.<T>}
    */
   transformResult: function (result) {
     let transformedResult = result.map(rawResult => this.getBranchStates(JSON.parse(rawResult.substring(5))));
-    return Array.prototype.concat(...transformedResult);
+    return Array.prototype.concat(...transformedResult).filter(x => x instanceof Service);
   },
-	/**
+  /**
    * Find if the status of the service up/down
    * @param projectBranch
    * @returns {boolean}
    */
   getStatus: projectBranch => projectBranch['permissions']['submit']['rules']['global:Registered-Users']['action'] === OK_STATUS,
-	/**
+  /**
    * Creates an Array from the services based on their states
    * @param branchInfo {Object}
    * @returns {Array.<T>}
@@ -36,7 +36,7 @@ module.exports = {
       return projectBranch ? new Service(`${projectName}->${currentBranch}`, this.getStatus(projectBranch)) : null;
     });
   },
-	/**
+  /**
    * Returns a promise, which when resolved gets you the service information
    * @returns {Promise}
    */

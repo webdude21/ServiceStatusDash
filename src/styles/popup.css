@@ -8,7 +8,7 @@
   list-style-type: none;
 }
 
-.service-list > li {
+.service-list> li {
   padding: 0.2rem 0.5rem;
   font-weight: bold;
   white-space: nowrap;

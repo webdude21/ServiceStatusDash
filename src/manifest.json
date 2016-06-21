@@ -4,7 +4,7 @@
   "author": "Dimo Petrov",
   "homepage_url": "https://github.com/webdude21/ServiceStatusDash",
   "description": "A Chrome extension designed to monitor the status of services",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "options_page": "views/options.html",
   "options_ui": {
     "page": "views/options.html",
