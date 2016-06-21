@@ -2,7 +2,7 @@ let ajax = require('../util/ajax'),
   Service = require('../models/service'),
   storage = require('../services/storage');
 
-const BRANCHES = ['master', 'rel-1.38', 'rel-1.36', 'rel-1.34', 'rel-1.32', 'rel-1.30', 'rel-1.28'],
+const BRANCHES = ['master', 'rel-1.40', 'rel-1.38', 'rel-1.36', 'rel-1.34', 'rel-1.32', 'rel-1.30', 'rel-1.28'],
   PROJECTS = ['openui5', 'sapui5/sapui5.runtime', 'sapui5/sapui5.dist'],
   OK_STATUS = 'ALLOW';
 
