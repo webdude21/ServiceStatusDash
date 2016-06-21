@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Service Status Dashboard",
+  "name": "UI5 Project Status",
   "author": "Dimo Petrov",
   "homepage_url": "https://github.com/webdude21/ServiceStatusDash",
   "description": "A Chrome extension designed to monitor the status of services",
