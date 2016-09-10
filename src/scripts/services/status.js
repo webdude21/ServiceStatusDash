@@ -1,5 +1,4 @@
-let ajax = require('../util/ajax'),
-  Service = require('../models/service'),
+let Service = require('../models/service'),
   storage = require('../services/storage');
 
 const BRANCHES = ['master', 'rel-1.42', 'rel-1.40', 'rel-1.38', 'rel-1.36', 'rel-1.34', 'rel-1.32', 'rel-1.30', 'rel-1.28'],
@@ -45,7 +44,8 @@ module.exports = {
       storage.loadOptions()
         .then(({ serviceAddress }) => {
           if (serviceAddress) {
-            return Promise.all(PROJECTS.map(projectName => ajax(`${serviceAddress}?project=${projectName}`).get()));
+            return Promise.all(PROJECTS.map(projectName => fetch(`${serviceAddress}?project=${projectName}`)
+                .then(res => res.text())));
           }
 
           return reject('No service address is provided');
