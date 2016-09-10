@@ -1,6 +1,6 @@
 {
   "name": "servicedash",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Chrome extension designed to monitor the status of services",
   "main": "index.js",
   "scripts": {
