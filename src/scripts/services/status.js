@@ -8,8 +8,8 @@ const BRANCHES = ['master', 'rel-1.42', 'rel-1.40', 'rel-1.38', 'rel-1.36', 'rel
 module.exports = {
   /**
    * Transform the result from the service call to a digestible format
-   * @param result {Array.<Array<T>>}
-   * @returns {Array.<T>}
+   * @param result {Array.<Array<Service>>}
+   * @returns {Array.<Service>}
    */
   transformResult: function (result) {
     let transformedResult = result.map(rawResult => this.getBranchStates(JSON.parse(rawResult.substring(5))));
@@ -24,7 +24,7 @@ module.exports = {
   /**
    * Creates an Array from the services based on their states
    * @param branchInfo {Object}
-   * @returns {Array.<T>}
+   * @returns {Array.<Service>}
    */
   getBranchStates: function (branchInfo) {
     let projectName = Object.keys(branchInfo)[0],
