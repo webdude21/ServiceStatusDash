@@ -20,7 +20,7 @@ module.exports = {
    * @param projectBranch
    * @returns {boolean}
    */
-  getStatus: projectBranch => projectBranch['permissions']['submit']['rules']['global:Registered-Users']['action'] === OK_STATUS,
+  getStatus: projectBranch => projectBranch.permissions.submit.rules['global:Registered-Users'].action === OK_STATUS,
   /**
    * Creates an Array from the services based on their states
    * @param branchInfo {Object}
@@ -31,7 +31,7 @@ module.exports = {
       project = branchInfo[projectName];
 
     return BRANCHES.map(currentBranch => {
-      let projectBranch = project['local'][`refs/heads/${currentBranch}`];
+      let projectBranch = project.local[`refs/heads/${currentBranch}`];
       return projectBranch ? new Service(`${projectName}->${currentBranch}`, this.getStatus(projectBranch)) : null;
     });
   },
